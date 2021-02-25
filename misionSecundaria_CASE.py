@@ -16,7 +16,7 @@ lastAlt = None
 alt = sensor.altitud
 variacionMin = None #Poner variación mínima del sensor
 
-while 0 < lastAlt - alt <= variacionMin:
+while variacionMin <= lastAlt - alt and lastAlt - alt != 0:
 	camera.capture('/home/pi/Desktop/altitud%0.2.jpg' %sensor.altitud) 
 	lastAlt = sensor.altitud
 	time.sleep (5)
