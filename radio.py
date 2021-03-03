@@ -14,10 +14,14 @@ import adafruit_rfm69
 
 display = None
 rfm69 = None
+btnA = None
+btnB = None
 
 def init():
 	global display
 	global rfm69
+	global btnA
+	global btnB 
 
 	# I2C
 	i2c = busio.I2C(board.SCL, board.SDA)
@@ -39,6 +43,17 @@ def init():
 	rfm69 = adafruit_rfm69.RFM69(spi, CS, RESET, 433.0)
 	prev_packet = None
 	rfm69.encryption_key = b'\x01\x02\x03\x04\x05\x06\x07\x08\x01\x02\x03\x04\x05\x06\x07\x08'
+
+	# Button A
+	btnA = DigitalInOut(board.D5)
+	btnA.direction = Direction.INPUT
+	btnA.pull = Pull.UP
+
+	# Button B
+	btnB = DigitalInOut(board.D6)
+	btnB.direction = Direction.INPUT
+	btnB.pull = Pull.UP
+
 
 def close():
 	display.fill(0)
