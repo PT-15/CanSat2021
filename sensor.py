@@ -10,6 +10,7 @@ import adafruit_bme280
 
 outputLog = None
 bme280 = None
+startTime = None
 
 def init():
 	global outputLog
@@ -20,11 +21,16 @@ def init():
 	bme280.sea_level_pressure = 1013.25
 	outputLog = open ('data.txt', 'a')
 
+	global startTime
+
+	if startTime == None:
+		startTime = time.time()
+
 def altitud():
 	return bme280.altitude
 
 def line():
-        return "%f %f %f %f %f\n" % (time.time(), bme280.temperature, bme280.humidity, bme280.pressure, bme280.altitude)
+        return "%f %f %f %f %f\n" % (time.time() - startTime, bme280.temperature, bme280.humidity, bme280.pressure, (-1)*bme280.altitude)
 
 def writeLogLine():
         outputLog.write(line())
@@ -32,3 +38,4 @@ def writeLogLine():
 
 def close():
 	outputLog.close()
+
