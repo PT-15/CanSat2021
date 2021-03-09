@@ -16,14 +16,12 @@ def main():
 
 		#Envía los datos por radio
 		packet = bytes((sensor.line(), gps.line()), "utf-8")
-		pl = len(packet)
 
-		while pl > 60:
+		while len(packet) > 60:
 			radio.rfm69.send(packet[:60])
 			packet = packet[60:]
-			pl = (len(packet))
 
-		if pl > 0:
+		if len(packet) > 0:
 			radio.rfm69.send(packet)
 
 		time.sleep(0.5)

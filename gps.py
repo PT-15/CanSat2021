@@ -1,6 +1,6 @@
 #Librería para el GPS
 
-#fecha, sello de tiempo, coordinadas, fix quality, satelites, altitud, velocidad
+#fecha, sello de tiempo, coordenadas, fix quality, satelites, altitud, velocidad
 
 import time
 import board
@@ -45,15 +45,15 @@ def fixQuality():
 	return "%" % (gps.fix_quality)
 
 def satelites():
-	if gps.satellites is not None:
+	if gps.satellites:
 		return "%" % (gps.satellites)
 
 def altitud():
-	if gps.altitude_m is not None:
+	if gps.altitude_m:
 		return "%" % (gps.altitude_m)
 
 def velocidad():
-	if gps.speed_knots is not None:
+	if gps.speed_knots:
 		return "%" % (gps.speed_knots)
 
 def writeLogLine():
