@@ -56,11 +56,8 @@ def velocidad():
 	if gps.speed_knots is not None:
 		return "%" % (gps.speed_knots)
 
-def line():
-	return "% % % % % % %" % (fecha(), timeStamp(), coordenadas(), fixQuality(), satelites(), altitud(), velocidad())
-
 def writeLogLine():
-	outputLog.write(line())
+	outputLog.write(coordenadas())
 	outputLog.flush()
 
 def close():

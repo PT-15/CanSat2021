@@ -1,32 +1,37 @@
 import radio
 import time
-outputLog = None
 
+
+outputLog = None
 
 def main():
 	radio.init()
-	startTime = 0
+
 	outputLog = open('dataTARS.txt', 'a')
+
 
 	while True:
 		packet = radio.rfm69.receive(timeout = 2)
+
 		if packet is None:
 			radio.display.fill(0)
 			radio.display.text('No packet', 25, 15, 1)
 			radio.display.show()
 		else:
 			dataLine = packet.decode()
+
+			outputLog.write(dataLine)
+			outputLog.flush()
+
 			fields = dataLine.split (' ')
+
 			timeStamp = float(fields[0])
-
-			if startTime == 0:
-				startTime = timeStamp
-
 			temperature = float(fields[1])
 			humedad = float(fields[2])
 			presion = float(fields[3])
 			altitud = (-1)*float(fields[4])
-			outputLog.write("%f %f %f %f %f\n" % (timeStamp, temperature, humedad, presion, altitud))
+
+			outputLog.write("xxx %f %f %f %f %f\n" % (timeStamp, temperature, humedad, presion, altitud))
 			print("\nTime: %0.2f s" % (timeStamp - startTime))
 			print("Temperature: %0.1f C" % temperature)
 			print("Humedad: %0.1f %%" % humedad)

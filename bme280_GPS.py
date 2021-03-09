@@ -10,13 +10,22 @@ def main():
 	gps.init()
 
 	while True:
+		#Graba los datos a la SD
 		sensor.writeLogLine()
 		gps.writeLogLine()
-		packet = bytes(sensor.line(), "utf-8")
-		radio.rfm69.send(packet)
-#Dividir en paquetes y enviar sensor y gps juntos. Usar timestamp del gps para sensor
-#		packet = bytes(gps.line(), "utf-8")
-#		radio.rfm69.send(packet)
+
+		#Envía los datos por radio
+		packet = bytes((sensor.line(), gps.line()), "utf-8")
+		pl = len(packet)
+
+		while pl > 60:
+			radio.rfm69.send(packet[:60])
+			packet = packet[60:]
+			pl = (len(packet))
+
+		if pl > 0:
+			radio.rfm69.send(packet)
+
 		time.sleep(0.5)
 
 	radio.close()
