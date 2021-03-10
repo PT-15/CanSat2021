@@ -4,7 +4,7 @@
 
 import time
 import board
-import busio
+import serial
 
 import adafruit_gps
 
@@ -18,7 +18,9 @@ def init():
 	RX = board.RX
 	TX = board.TX
 
-	uart = busio.UART(TX, RX, baudrate = 9600, timeout = 3000)
+#	uart = serial.Serial.UART(TX, RX, baudrate = 9600, timeout = 3000)
+
+	uart = serial.Serial("ttyS0", baudrate=9600, timeout=10)
 
 	gps = adafruit_gps.GPS (uart)
 
@@ -33,7 +35,7 @@ def init():
 	outputLog = open ('gps.txt0', 'a')
 
 def fecha():
-	return "%/%/%" % (ps.timestamp_utc.tm_mday, gps.timestamp_utc.tm_mon, gps.timestamp_utc.tm_year)
+	return "%/%/%" % (gps.timestamp_utc.tm_mday, gps.timestamp_utc.tm_mon, gps.timestamp_utc.tm_year)
 
 def timeStamp():
 	return "%:%:%" % (gps.timestamp_utc.tm_hour, gps.timestamp_utc.tm_min, gps.timestamp_utc.tm_sec)
@@ -57,7 +59,7 @@ def velocidad():
 		return "%" % (gps.speed_knots)
 
 def writeLogLine():
-	outputLog.write(coordenadas())
+	outputLog.write(fecha(), timeStamp(), coordenadas(), fixQuality(), satelites(), altitud(), velocidad())
 	outputLog.flush()
 
 def close():

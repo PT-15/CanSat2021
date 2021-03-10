@@ -1,5 +1,4 @@
 import radio
-import time
 
 
 outputLog = None
