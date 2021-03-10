@@ -4,13 +4,13 @@ import picamera
 
 #camera.start_preview()
 
-camera.resolution = (1920,1272)
-camera.annotate_text_size = 18
-camera.annotate_background = Color('blue')
-camera.annotate_foreground = Color('yellow')
-camera.annotate_text = "Las Rozas"
+picamera.camera.resolution = (1920,1272)
+picamera.camera.annotate_text_size = 18
+#picamera.camera.annotate_background = color('blue')
+#picamera.camera.annotate_foreground = Color('yellow')
+picamera.camera.annotate_text = "Las Rozas"
 
-lastAlt = None
+lastAlt = 0
 alt = sensor.altitud
 variacionMin = 1 #Poner variación mínima del sensor
 

@@ -19,14 +19,14 @@ def init():
 	bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c)
 	bme280.sea_level_pressure = 1021
 	outputLog = open ('data.txt', 'a')
-	outputLog.write(gps.fecha())
-	outputLog.flush()
+#	outputLog.write(gps.fecha())
+#	outputLog.flush()
 
 def altitud():
 	return bme280.altitude
 
 def line():
-        return "%f %f %f %f %f\n" % (gps.timeStamp, bme280.temperature, bme280.humidity, bme280.pressure, (-1)*bme280.altitude)
+        return "%f %f %f %f\n" % (bme280.temperature, bme280.humidity, bme280.pressure, (-1)*bme280.altitude)
 
 def writeLogLine():
         outputLog.write(line())

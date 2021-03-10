@@ -1,11 +1,9 @@
 #másinfo en https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/2
+'''
 import sensor
 import time
 import picamera
-import adafruit_gps
 import board
-import busio
-import serial
 
 camera.start_preview()
 
@@ -24,7 +22,11 @@ while variacionMin <= lastAlt - alt and lastAlt - alt != 0:
 	lastAlt = sensor.altitud
 	time.sleep (5)
 	alt = sensor.altitud
-	
+'''
+import adafruit_gps
+import busio
+import serial
+
 #código gps
 uart = serial.Serial("/dev/ttyUSB0", baudrate=9600, timeout=3) #el timeout3 es el tiempo de espera para la información, en este caso 3 segundos. NOTA: debe ser mayor que la tasa de refresco de la línea 35
 #cambiando /dev/ttyUSB0al puerto serie apropiado para la rasberry pi3; mas info en: https://learn.adafruit.com/adafruit-ultimate-gps/circuitpython-python-uart-usage
