@@ -15,7 +15,7 @@ def main():
 		gps.writeLogLine()
 
 		#Envía los datos por radio
-		packet = bytes((sensor.line(), gps.line()), "utf-8")
+		packet = bytes((sensor.line(), gps.coordenadas()), "utf-8")
 
 		while len(packet) > 60:
 			radio.rfm69.send(packet[:60])
