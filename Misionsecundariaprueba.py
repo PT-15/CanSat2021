@@ -28,7 +28,7 @@ import busio
 import serial
 
 #código gps
-uart = serial.Serial("/dev/ttyUSB0", baudrate=9600, timeout=3) #el timeout3 es el tiempo de espera para la información, en este caso 3 segundos. NOTA: debe ser mayor que la tasa de refresco de la línea 35
+uart = serial.Serial("/dev/ttyUSB0", baudrate=9600, timeout=1) #el timeout3 es el tiempo de espera para la información, en este caso 3 segundos. NOTA: debe ser mayor que la tasa de refresco de la línea 35
 #cambiando /dev/ttyUSB0al puerto serie apropiado para la rasberry pi3; mas info en: https://learn.adafruit.com/adafruit-ultimate-gps/circuitpython-python-uart-usage
 i2c = board.I2C() #si usas la interfaz I2C; creo q es la de la placa adafruit
 gps = adafruit_gps.GPS_GtopI2C (i2c, debug = False) #i2c es porque usamos la interfaz I2C; ssi fuese raspberry gps = adafruit_gps . GPS ( uart , debug = False )

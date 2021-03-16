@@ -4,6 +4,7 @@
 
 import time
 import board
+import busio
 import serial
 
 import adafruit_gps
@@ -15,12 +16,7 @@ def init():
 	global gps
 	global outputLog
 
-	RX = board.RX
-	TX = board.TX
-
-#	uart = serial.Serial.UART(TX, RX, baudrate = 9600, timeout = 3000)
-
-	uart = serial.Serial("ttyS0", baudrate=9600, timeout=10)
+	uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=3000)
 
 	gps = adafruit_gps.GPS (uart)
 
@@ -30,36 +26,40 @@ def init():
 	#Update every second
 	gps.send_command (b"PMTK220,1000")
 
-	last_print = time.monotonic()
-
-	outputLog = open ('gps.txt0', 'a')
+	outputLog = open ('gps.txt', 'a')
 
 def fecha():
-	return "%/%/%" % (gps.timestamp_utc.tm_mday, gps.timestamp_utc.tm_mon, gps.timestamp_utc.tm_year)
+	return "%d/%d/%d" % (gps.timestamp_utc.tm_mday, gps.timestamp_utc.tm_mon, gps.timestamp_utc.tm_year)
 
 def timeStamp():
-	return "%:%:%" % (gps.timestamp_utc.tm_hour, gps.timestamp_utc.tm_min, gps.timestamp_utc.tm_sec)
+	return "%s:%s:%s" % (gps.timestamp_utc.tm_hour, gps.timestamp_utc.tm_min, gps.timestamp_utc.tm_sec)
 
 def coordenadas():
-	return "%0.6f %0.6f" % (gps.latitude, gps.longitude)
+	return "%s %s" % (gps.latitude, gps.longitude)
 
 def fixQuality():
-	return "%" % (gps.fix_quality)
+	return "%s" % (gps.fix_quality)
 
 def satelites():
 	if gps.satellites:
-		return "%" % (gps.satellites)
+		return "%s" % (gps.satellites)
 
 def altitud():
 	if gps.altitude_m:
-		return "%" % (gps.altitude_m)
+		return "%s" % (gps.altitude_m)
 
 def velocidad():
 	if gps.speed_knots:
-		return "%" % (gps.speed_knots)
+		return "%s" % (gps.speed_knots)
 
 def writeLogLine():
-	outputLog.write(fecha(), timeStamp(), coordenadas(), fixQuality(), satelites(), altitud(), velocidad())
+	outputLog.write("Datos:")
+	outputLog.write("".join([chr(gps.coordenadas)]
+	outputLog.write(fixQuality())
+	outputLog.write(str(satelites()))
+	outputLog.write(str(altitud()))
+	outputLog.write(str(velocidad()))
+#Fecha y hora borradas
 	outputLog.flush()
 
 def close():
