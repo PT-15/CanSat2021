@@ -1,5 +1,9 @@
-# .init (inicializar modulo radio)
-# .close (vaciar pantalla antes de cerrar programa)
+'''
+Funciones librería
+	.init (inicializar modulo radio)
+	.close (vaciar pantalla antes de cerrar programa)
+'''
+
 
 import time
 # Libreria protocolos serie
@@ -17,6 +21,7 @@ rfm69 = None
 btnA = None
 btnB = None
 
+#Inicializa el módulo de radio (incluyendo la pantalla y los botones)
 def init():
 	global display
 	global rfm69
@@ -52,6 +57,11 @@ def init():
 	btnB = DigitalInOut(board.D6)
 	btnB.direction = Direction.INPUT
 	btnB.pull = Pull.UP
+
+	# Button C
+	btnC  = DigitalInOut(board.D12)
+	btnC.direction = Direction.INPUT
+	btnC.pull = Pull.UP
 
 
 def close():

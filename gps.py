@@ -12,6 +12,7 @@ import adafruit_gps
 gps = None
 outputLog = None
 
+#Inicializa el gps
 def init():
 	global gps
 	global outputLog
@@ -28,6 +29,10 @@ def init():
 
 	outputLog = open ('gps.txt', 'a')
 
+	print("Hello world")
+
+
+'''
 def fecha():
 	return "%d/%d/%d" % (gps.timestamp_utc.tm_mday, gps.timestamp_utc.tm_mon, gps.timestamp_utc.tm_year)
 
@@ -64,3 +69,4 @@ def writeLogLine():
 
 def close():
 	outputLog.close()
+'''
