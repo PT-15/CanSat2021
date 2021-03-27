@@ -12,6 +12,7 @@ import adafruit_gps
 gps = None
 outputLog = None
 
+#Inicializa el gps
 def init():
 	global gps
 	global outputLog
@@ -27,8 +28,6 @@ def init():
 	gps.send_command (b"PMTK220,1000")
 
 	outputLog = open ('gps.txt', 'a')
-
-
 
 def update():
 	gps.update()
@@ -58,8 +57,6 @@ def altitude():
 	else:
 		if gps.altitude_m is not None:
 			return (gps.altitude_m)
-
-
 
 '''
 def fecha():
@@ -99,4 +96,3 @@ def writeLogLine():
 
 def close():
 	outputLog.close()
-
