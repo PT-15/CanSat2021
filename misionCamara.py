@@ -9,16 +9,33 @@ camera = PiCamera()
 camera.resolution = (1920, 1272)
 
 
-lastAlt = 2000
-alt = sensor.altitud()
-difference = lastAlt - alt
-variation = 0.5
+lastShotAlt = sensor.altitud()
+maxAltDiff = 3 #Set real max time diff
 
-while difference >= variation:
+lastShotTimestamp = time.time()
+maxTimeDiff = 2
+
+altVariationMin = 0.5
+
+while True:
+	timestamp = time.time()
 	alt = sensor.altitud()
-	camera.capture('/home/pi/Desktop/photo_%0.2f.jpg' % time.time())
-	difference = lastAlt - alt
-	lastAlt = alt
-	print ("*click*")
-	time.sleep(5)
 
+	altDiff = alt - lastShotAlt
+	timeDiff = timestamp - lastShotTimestamp
+
+	if timeDiff >= maxTimeDiff:
+		if altDiff <= altVariationMin and altDiff >= -0.5:
+			exit()
+		else: 
+			camera.capture('/home/pi/Desktop/photoTime_%0.2f.jpg' % time.time())
+			lastShotAlt = sensor.altitud()
+			lastShotTimestamp = time.time()
+			continue
+	else: 
+		if altDiff >= maxAltDiff:
+			camera.capture('/home/pi/Desktop/photoFall_%0.2f.jpg' % time.time())
+			lastShotAlt = sensor.altitud()
+			lastShotTimestamp = time.time()
+		else: 
+			continue
