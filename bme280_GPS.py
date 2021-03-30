@@ -3,19 +3,19 @@ import time
 #Programas que se encargan de manejar los módulos
 import radio
 import sensor
-#import gps
+import gps
 
 def main():
 
 	#Inicialización de los módulos
 	radio.init()
 	sensor.init()
-#	gps.init()
+	gps.init()
 
 	while True:
 		#Graba los datos a la microSD
 		sensor.writeLogLine()
-#		gps.writeLogLine()
+		gps.writeLogLine()
 
 		#Envía los datos por radio
 		packet = bytes(sensor.line(), "utf-8")
@@ -28,11 +28,24 @@ def main():
 		if len(packet) > 0:
 			radio.rfm69.send(packet)
 
+		if gps.fix():
+			infoGps = bytes(gps.line(), "utf-8")
+
+			while len(infoGps) > 60:
+				radio.rfm69.send(infoGps[:60])
+				infoGps = infoGps[60:]
+
+			if len(infoGps) > 0:
+				radio.rfm69.send(infoGps)
+		else:
+			infoGps = bytes(gps.fixQuality(), "utf-8")
+			radio.rfm69.send(infoGps)
+
 		time.sleep(0.5)
 
 	radio.close()
 	sensor.close()
-#	gps.close()
+	gps.close()
 
 
 try:
@@ -41,5 +54,5 @@ try:
 except KeyboardInterrupt:
 	radio.close()
 	sensor.close()
-#	gps.close()
+	gps.close()
 	print("Out")
