@@ -134,3 +134,8 @@ dataTARS.txt
 limpiarPantalla.py
 pruebaGPS.py
 pillarDatos.py
+..gitignore.swp
+MSC.py
+MSC.py.save
+copiaMSC.py
+gps.txt
