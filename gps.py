@@ -27,7 +27,7 @@ def init():
 	#Update every second
 	gps.send_command (b"PMTK220,1000")
 
-	outputLog = open ('gps.txt', 'a')
+	outputLog = open ('dataGPS.txt', 'a')
 
 
 def fixQuality():
