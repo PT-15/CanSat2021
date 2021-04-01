@@ -29,6 +29,10 @@ def main():
 			humedad = float(fields[2])
 			presion = float(fields[3])
 			altitud = float(fields[4])
+			fixQuality = float(fields[5])
+
+			if fixQuality is not 0:
+				
 
 			if i is 0:
 				startTime = timeStamp

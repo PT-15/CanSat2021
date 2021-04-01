@@ -71,7 +71,7 @@ def velocidad():
 		return -1.0
 
 def line():
-	return fixQuality(), timeStamp(), satelites(), coordenadas(), altitud(), velocidad
+	return fixQuality(), timeStamp(), satelites(), coordenadas(), altitud(), velocidad()
 
 def writeLogLine():
 	if fix():
