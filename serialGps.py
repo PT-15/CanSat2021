@@ -10,7 +10,7 @@ n = 0
 while True:
 
 	line = uart.read_until()
-	outputLog.write("%s" % line)
+	outputLog.write(str(line))
 	n += 1
 	if n >= 10:
 		outputLog.flush()
