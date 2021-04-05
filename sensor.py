@@ -9,7 +9,6 @@ Funciones librería
 import board
 import busio
 import adafruit_bme280
-#import gps
 import time
 
 outputLog = None
@@ -24,9 +23,6 @@ def init():
 	bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c)
 	bme280.sea_level_pressure = 1021
 	outputLog = open ('data.txt', 'a')
-#Escribe la fecha al principio del archivo.
-#	outputLog.write(gps.fecha())
-#	outputLog.flush()
 
 #Devuelve la altitud del sensor
 def altitud():
