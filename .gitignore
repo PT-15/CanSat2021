@@ -138,4 +138,6 @@ pillarDatos.py
 MSC.py
 MSC.py.save
 copiaMSC.py
-gps.txt
+dataGPS.txt
+gps.service
+gpsInfo*.txt
