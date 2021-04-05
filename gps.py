@@ -29,7 +29,30 @@ def init():
 
 	outputLog = open ('dataGPS.txt', 'a')
 
+def fixQuality():
+	return gps.fix_quality
 
+def fix():
+	gps.update()
+	if not gps.has_fix:
+		return False
+
+def line():
+	return "%d %f %d %0.6f %0.6f %f %f\n" % (gps.fix_quality, gps.timestamp_utc, gps.satellites, gps.latitude[0:], gps.longitude[0:], gps.altitude_m, gps.speed_knots)
+
+def writeLogLine():
+	if fix():
+		outputLog.write(line())
+	else:
+		outputLog.write("%d" % gps.fix_quality)
+		outputLog.write("\n")
+
+	outputLog.flush()
+
+
+def close():
+	outputLog.close()
+'''
 def fixQuality():
 	return ("%d") % gps.fix_quality
 
@@ -71,15 +94,17 @@ def velocidad():
 		return -1.0
 
 def line():
-	return fixQuality(), timeStamp(), satelites(), coordenadas(), altitud(), velocidad
+	return "%d %f %f %f %f %f\n" % (fixQuality(), timeStamp(), satelites(), coordenadas(), altitud(), velocidad())
 
 def writeLogLine():
 	if fix():
 		outputLog.write(line())
-		outputLog.flush()
 	else:
-		outputLog.write("No fix")
+		outputLog.write(fixQuality())
+		outputLog.write("\n")
 
+	outputLog.flush()
 
 def close():
 	outputLog.close()
+'''
