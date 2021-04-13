@@ -14,3 +14,4 @@ while True:
 	n += 1
 	if n >= 10:
 		outputLog.flush()
+		n = 0
