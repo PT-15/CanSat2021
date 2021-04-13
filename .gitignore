@@ -141,3 +141,7 @@ copiaMSC.py
 dataGPS.txt
 gps.service
 gpsInfo*.txt
+.blink.py.swp
+blink.py
+prueba.py
+zumbador.py
