@@ -94,7 +94,11 @@ def velocidad():
 		return -1.0
 
 def line():
+<<<<<<< HEAD
 	return "%d %f %f %f %f %f\n" % (fixQuality(), timeStamp(), satelites(), coordenadas(), altitud(), velocidad())
+=======
+	return fixQuality(), timeStamp(), satelites(), coordenadas(), altitud(), velocidad()
+>>>>>>> b12f5433323416f8efd5b1f8a24d2ffabead6973
 
 def writeLogLine():
 	if fix():
