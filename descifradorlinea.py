@@ -27,15 +27,22 @@ sleep(4)
 '''
 #filename = open('/home/samu/Documents/pruebagps/prueba.txt', encoding='utf-8')
 filename = open('gpsData.txt')
-salida = open ('decode.txt', 'w+')
+salida = open('decode.txt', 'w+')
+coordenadas = open('coordenadas,txt', 'w+') 
 for line in filename.readlines():
 	msg = pynmea2.parse(line)
 	salida.write(repr(msg))
 	salida.write(str(msg.latitude))
-	salida.write(str(msg.longitude))
+	salida.write((str(msg.longitude)) +"\n")
+	str_1 = '(str(msg.longitude))'
+	str_2 = '(str(msg.latitude))'
+	resultado= str_1 +str_2
+	coordenadas.write((str(resultado)) +"\n")
+
 
 
 salida.flush()
+coordenadas.flush()
 '''
 filedef = open('/home/samu/Documents/pruebagps/decode.txt')
 salidadef = open ('decodedef.txt', 'w+')
