@@ -26,18 +26,21 @@ outputLog.flush()
 sleep(4)
 '''
 #filename = open('/home/samu/Documents/pruebagps/prueba.txt', encoding='utf-8')
-filename = open('gpsData.txt')
+#filename = open('gpsData.txt')
+filename = open('/home/kali/Samu/CanSat21/pruebagps/prueba2.txt', encoding='utf-8')
 salida = open('decode.txt', 'w+')
-coordenadas = open('coordenadas,txt', 'w+') 
+coordenadas = open('coordenadas,txt', 'w+')
 for line in filename.readlines():
 	msg = pynmea2.parse(line)
+	str1 = (str(msg.latitude))
+	str2 = (str(msg.longitude))
+	resultado = (str1 + ' ' + str2)
+
 	salida.write(repr(msg))
 	salida.write(str(msg.latitude))
-	salida.write((str(msg.longitude)) +"\n")
-	str_1 = '(str(msg.longitude))'
-	str_2 = '(str(msg.latitude))'
-	resultado= str_1 +str_2
+	salida.write(str((msg.longitude)) +"\n")
 	coordenadas.write((str(resultado)) +"\n")
+
 
 
 
