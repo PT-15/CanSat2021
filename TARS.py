@@ -29,6 +29,14 @@ def main():
 			humedad = float(fields[2])
 			presion = float(fields[3])
 			altitud = float(fields[4])
+			fixQuality = float(fields[5])
+
+			if fixQuality is not 0:
+				gpsTimeStamp = float(fields[6])
+				gpsSatelites = float(fields[7])
+				gpsCoordenadas = float(fields[8])
+				gpsAltitud = float(fields[9])
+				gpsVelocidad = float(fields[10])
 
 			if i is 0:
 				startTime = timeStamp
