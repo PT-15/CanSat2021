@@ -29,7 +29,7 @@ sleep(4)
 #filename = open('gpsData.txt')
 filename = open('/home/kali/Samu/CanSat21/pruebagps/prueba2.txt', encoding='utf-8')
 salida = open('decode.txt', 'w+')
-coordenadas = open('coordenadas,txt', 'w+')
+coordenadas = open('coordenadas.txt', 'w+')
 for line in filename.readlines():
 	msg = pynmea2.parse(line)
 	str1 = (str(msg.latitude))
