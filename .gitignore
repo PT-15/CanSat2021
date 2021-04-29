@@ -145,4 +145,5 @@ gpsInfo*.txt
 .blink.py.swp
 blink.py
 prueba.py
-
+gpsInfo*txt
+sendsGps.py.save

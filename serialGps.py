@@ -1,10 +1,9 @@
 import busio
 import board
 import serial
-import time
 
 uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=3000)
-outputLog = open ('gpsInfo.txt' % time.time(), 'at')
+outputLog = open ('gpsInfo.txt', 'at')
 outputLog.write("START\n")
 n = 0
 

@@ -9,48 +9,48 @@ gpsLines = []
 gpsPacket = []
 i = 0
 
-def main():
-	while True:
-		sensor.writeLogLine()
 
-		#Se escribe en la lista gpsPacket las líneas a enviar
-		with open ('gpsInfo.txt', 'rt') as gpsFile:
-			for line in gpsFile:
-				gpsLines.append(line)
+while True:
+	sensor.writeLogLine()
 
-		gpsPacket.clear()
+	#Se escribe en la lista gpsPacket las líneas a enviar
+	with open ('gpsInfo.txt', 'rt') as gpsFile:
+		for line in gpsFile:
+			gpsLines.append(line)
 
-		for x in gpsLines[i:]
-			gpsPacket.append(x)
-			i += 1
+	gpsPacket.clear()
+
+	for x in gpsLines: #[i:]
+		gpsPacket.append(x)
+		i += 1
 		
-		lines.clear()
+	gpsLines.clear()
 
-		#Envía los datos por radio
-		packet = bytes(sensor.line(), "utf-8")
-		gpsSend = bytes(gpsPacket, "utf-8")
+	#Envía los datos por radio
+	packet = bytes(sensor.line(), "utf-8")
+	gpsSend = bytes(str(gpsPacket), "utf-8")
 
-			#Paquetiza la información para que no supere el tamaño de 60
-		while len(packet) > 60:
-			radio.rfm69.send(packet[:60])
-			packet = packet[60:]
+		#Paquetiza la información para que no supere el tamaño de 60
+	while len(packet) > 60:
+		radio.rfm69.send(packet[:60])
+		packet = packet[60:]
 
-		if len(packet) > 0:
-			radio.rfm69.send(packet)
+	if len(packet) > 0:
+		radio.rfm69.send(packet)
 
-		while len(gpsSend) > 60:
-			radio.rfm69.send(gpsSend[:60])
-			gpsSend = gpsSend[60:]
+	while len(gpsSend) > 60:
+		radio.rfm69.send(gpsSend[:60])
+		gpsSend = gpsSend[60:]
 
-		if len(gpsSend) > 0:
-			radio.rfm69.send(gpsSend)
+	if len(gpsSend) > 0:
+		radio.rfm69.send(gpsSend)
 
-		time.sleep(0.1)
+	time.sleep(0.1)
 
-	radio.close()
-	sensor.close()
+radio.close()
+sensor.close()
 
-
+'''
 try:
 	main()
 
@@ -58,3 +58,4 @@ except KeyboardInterrupt:
 	radio.close()
 	sensor.close()
 	print("Out")
+'''
