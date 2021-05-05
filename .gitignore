@@ -148,3 +148,5 @@ prueba.py
 gpsInfo*txt
 sendsGps.py.save
 texto.py
+coordenadas.txt
+decode.txt
