@@ -23,7 +23,7 @@ while True:
 	for x in gpsLines[i:]:
 		gpsPacket.append(x)
 		i += 1
-		
+
 	gpsLines.clear()
 
 	#Envía los datos por radio
