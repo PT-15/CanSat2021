@@ -20,7 +20,7 @@ while True:
 
 	gpsPacket.clear()
 
-	for x in gpsLines: #[i:]
+	for x in gpsLines[i:]:
 		gpsPacket.append(x)
 		i += 1
 		
