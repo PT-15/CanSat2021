@@ -7,7 +7,7 @@ def main():
 	radio.init()
 	i = 0
 
-	sensorLog = open('dataTARS.txt', 'a')
+	sensorLog = open('dataTARS.txt', 'at')
 	gpsLog = open('gpsData.txt', 'a')
 
 	while True:
@@ -24,18 +24,24 @@ def main():
 			fields = dataLine.split (' ')
 
 			for x in fields:
-				if x[:3] == "$GP" or x[:5] == "START":
-					gpsLog.write(x + "\n")
-					print (x)
-				else:
-					print (x)
-					sensorLog.write(x)
+				if x[:5] == '16204':
+					gpsLog.flush()
+					sensorLog.write(x + " ")
+					i += 1
 
-					if i == 5:
-						sensorLog.write("\n")
+				elif i > 0:
+					if i == 4:
+						sensorLog.write(x + "\n")
+						sensorLog.flush()
 						i = 0
 					else:
+						sensorLog.write(x + " ")
 						i += 1
+				else:
+					gpsLog.write(x + "\n")
+
+
+
 			'''
 
 
