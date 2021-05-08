@@ -30,6 +30,7 @@ while True:
 	packet = bytes(sensor.line(), "utf-8")
 	gpsSend = bytes(str(gpsPacket), "utf-8")
 
+
 		#Paquetiza la información para que no supere el tamaño de 60
 	while len(packet) > 60:
 		radio.rfm69.send(packet[:60])
