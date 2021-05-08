@@ -26,7 +26,7 @@ def init():
 	global display
 	global rfm69
 	global btnA
-	global btnB 
+	global btnB
 
 	# I2C
 	i2c = busio.I2C(board.SCL, board.SDA)
