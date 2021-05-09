@@ -9,5 +9,4 @@ outputLog.write("START\n")
 while True:
 	line = uart.readline()
 	outputLog.write(str(line) + "\n")
-	print (line)
 	outputLog.flush()

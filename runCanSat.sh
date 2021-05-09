@@ -2,4 +2,4 @@
 
 python3 serialGps.py &
 python3 radioSend.py &
-misionCamara.py
+python3 camara.py
