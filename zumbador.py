@@ -11,6 +11,7 @@ while True:
     diferencia = altura - last_altura
     if diferencia > 0 :
         if diferencia < altura_dif:
-            GPIO.setmode(GPIO.BOARD)
-            zumbadorlibreria.midi()
-            GPIO.cleanup()
+            while True:   
+                GPIO.setmode(GPIO.BOARD)
+                zumbadorlibreria.midi()
+                GPIO.cleanup()
