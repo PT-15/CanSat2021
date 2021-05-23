@@ -1,6 +1,7 @@
 import zumbadorlibreria.py
 import sensor.py
 import RPi.GPIO as GPIO
+GPIO.setwarnings(False)
 import time
 altura_dif = 10
 last_altura = sensor.altitud()
