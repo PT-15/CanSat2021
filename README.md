@@ -2,6 +2,8 @@
 
 Código para concurso CanSat 2021 del grupo del IES Rego de Trabe.
 
+![logo del equipo](https://drive.google.com/file/d/1D-iclGgFP7Ar_cJnOGQstVND0rRdF5D5/view?usp=sharing)
+
 Para configurar el arranque automático:
 
     sudo cp cansat.service /lib/systemd/system
